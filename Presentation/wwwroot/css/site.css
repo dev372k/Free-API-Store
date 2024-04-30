@@ -5,7 +5,8 @@
     --green: #2ECC71;
     --blue: #3498DB;
     --red: #E74C3C;
-    --yellow: #F1C40F
+    --yellow: #F1C40F;
+    --light-grey: #D7DBDD
 }
 /*html {
   font-size: 14px;
@@ -43,6 +44,16 @@ body {
     color: #333;
 }
 
+.card {
+    width: 12rem;
+}
+
+
+@media (min-width: 10000px) {
+    .card {
+        width: 20rem !important;
+    }
+}
 .list-group-item{
     border-bottom: none !important;
 }
@@ -160,10 +171,26 @@ a {
     padding: 5px;
     border-radius: 5px;
     color: var(--white);
-    /*font-size: 12px;*/
+}
+
+.request-box{
+    margin: 5px 0px;
+    background: var(--light-grey);
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--black);
 }
 
 .shell {
     background: var(--black);
     width: 100%
+}
+
+.accordion-button:focus{
+    box-shadow: none;
+}
+
+.accordion-button{
+    /* color: #0c63e4; */
+    background-color: white !important;
 }

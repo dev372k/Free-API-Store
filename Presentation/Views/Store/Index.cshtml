@@ -1,26 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Store";
+    ViewData["Title"] = "Free API Store";
     ViewData["Footer-fixed"] = false;
-    var html = @"fetch('https://fakestoreapi.com/products',{
-                    method:'POST',
-                    body:JSON.stringify(
-                        {
-                            title: 'test product',
-                            price: 13.5,
-                            description: 'lorem ipsum set',
-                            image: 'https://i.pravatar.cc',
-                            category: 'electronic'
-                        }
-                    )
-                })
-                    .then(res=>res.json())
-                    .then(json=>console.log(json))";
+
 }
 
 
 <div class="row">
     <div class="col-md-2">
-        <div class="card" style="width: 12rem;">
+        <div class="card">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Auth</strong></li>
                 <li class="list-group-item"><span class="badge badge-success">Post</span><a href="#" class="text-black"> Login</a></li>
@@ -54,10 +41,37 @@
             <span class="badge badge-success">Post</span>
             <span>api/v1/product</span>
         </div>
+        <div class="request-box">
+            <pre>
+fetch('https://fakestoreapi.com/products',{
+method:'POST',
+body:JSON.stringify(
+{
+    title: 'test product',
+    price: 13.5,
+    description: 'lorem ipsum set',
+    image: 'https://i.pravatar.cc',
+    category: 'electronic'
+})})
+.then(res => res.json())
+.then(json => console.log(json))
+            </pre>
+        </div>
         <div>
-            <code>
-                @html
-            </code>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Response
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
