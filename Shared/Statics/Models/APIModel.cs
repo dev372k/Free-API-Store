@@ -1,14 +1,25 @@
-﻿using Shared;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Application.DTOs
+namespace Shared.Statics.Models
 {
-    public class GetAPIDTOs
+    public class GetAPIs
     {
         public string GroupBy { get; set; } = string.Empty;
-        public List<APIDTO> APIDTOs { get; set; }
+        public List<API> APIs { get; set; }
     }
 
-    public class APIDTO
+    public class GetAPIDTO
+    {
+        public List<GetAPIs> GetAPIs { get; set; }
+        public API API { get; set; }
+    }
+
+
+    public class API
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
