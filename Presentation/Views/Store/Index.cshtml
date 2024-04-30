@@ -1,38 +1,41 @@
-﻿@{
+﻿@using Application.DTOs
+@using Shared
+@model IEnumerable<GetAPIDTOs>
+@{
     ViewData["Title"] = "Free API Store";
     ViewData["Footer-fixed"] = false;
 
 }
 
-
 <div class="row">
     <div class="col-md-2">
         <div class="card">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Auth</strong></li>
-                <li class="list-group-item"><span class="badge badge-success">Post</span><a href="#" class="text-black"> Login</a></li>
-                <li class="list-group-item"><span class="badge badge-success">Post</span><a href="#" class="text-black"> Register</a></li>
-
-                <li class="list-group-item"><strong>Product</strong></li>
-                <li class="list-group-item"><span class="badge badge-success">Post</span> <a href="#" class="text-black"> Create</a></li>
-                <li class="list-group-item"><span class="badge badge-primary">Get</span> <a href="#" class="text-black"> Get All</a></li>
-                <li class="list-group-item"><span class="badge badge-primary">Get</span> <a href="#" class="text-black"> Get by Id</a></li>
-                <li class="list-group-item"><span class="badge badge-warning">Put</span> <a href="#" class="text-black"> Update</a></li>
-                <li class="list-group-item"><span class="badge badge-danger">Delete</span> <a href="#" class="text-black"> Delete</a></li>
-
-                <li class="list-group-item"><strong>Category</strong></li>
-                <li class="list-group-item"><span class="badge badge-success">Post</span> <a href="#" class="text-black"> Create</a></li>
-                <li class="list-group-item"><span class="badge badge-primary">Get</span> <a href="#" class="text-black"> Get All</a></li>
-                <li class="list-group-item"><span class="badge badge-primary">Get</span> <a href="#" class="text-black"> Get by Id</a></li>
-                <li class="list-group-item"><span class="badge badge-warning">Put</span> <a href="#" class="text-black"> Update</a></li>
-                <li class="list-group-item"><span class="badge badge-danger">Delete</span> <a href="#" class="text-black"> Delete</a></li>
-
-                <li class="list-group-item"><strong>Order</strong></li>
-                <li class="list-group-item"><span class="badge badge-success">Post</span> <a href="#" class="text-black"> Create</a></li>
-                <li class="list-group-item"><span class="badge badge-primary">Get</span> <a href="#" class="text-black"> Get All</a></li>
-                <li class="list-group-item"><span class="badge badge-primary">Get</span> <a href="#" class="text-black"> Get by Id</a></li>
-                <li class="list-group-item"><span class="badge badge-warning">Put</span> <a href="#" class="text-black"> Update</a></li>
-                <li class="list-group-item"><span class="badge badge-danger">Delete</span> <a href="#" class="text-black"> Delete</a></li>
+                @foreach (var item in Model)
+                {
+                    <li class="list-group-item"><strong>@item.GroupBy</strong></li>
+                    foreach (var api in item.APIDTOs)
+                    {
+                        var badge = string.Empty;
+                        if (api.Method == enMethodType.Post)
+                        {
+                            badge = "basge-success";
+                        }
+                        else if (api.Method == enMethodType.Get)
+                        {
+                            badge = "basge-primary";
+                        }
+                        else if (api.Method == enMethodType.Put)
+                        {
+                            badge = "basge-warning";
+                        }
+                        else if (api.Method == enMethodType.Delete)
+                        {
+                            badge = "basge-danger";
+                        }
+                        <li class="list-group-item"><span class="badge @badge">@api.Method.ToString()</span><a href="?endpoint=@api.UniqueName" class="text-black"> @api.Name</a></li>
+                    }
+                }
             </ul>
         </div>
     </div>
@@ -41,8 +44,18 @@
             <span class="badge badge-success">Post</span>
             <span>api/v1/product</span>
         </div>
-        <div class="request-box">
-            <pre>
+        <div class="my-2">
+            <div class="accordion" id="request">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRequest" aria-expanded="true" aria-controls="collapseRequest">
+                            Request
+                        </button>
+                    </h2>
+                    <div id="collapseRequest" class="accordion-collapse collapse" data-bs-parent="#request">
+                        <div class="accordion-body">
+                            <div class="request-box">
+                                <pre>
 fetch('https://fakestoreapi.com/products',{
 method:'POST',
 body:JSON.stringify(
@@ -56,16 +69,21 @@ body:JSON.stringify(
 .then(res => res.json())
 .then(json => console.log(json))
             </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
-            <div class="accordion" id="accordionExample">
+            <div class="accordion" id="response">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="accordion-button text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseResponse" aria-expanded="true" aria-controls="collapseResponse">
                             Response
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="collapseResponse" class="accordion-collapse collapse" data-bs-parent="#response">
                         <div class="accordion-body">
                             <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                         </div>

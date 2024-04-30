@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.DTOs;
+using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 using System.Diagnostics;
 
@@ -13,9 +14,10 @@ namespace Presentation.Controllers
             _logger = logger;
         }
 
+        [HttpGet("Docs")]
         public IActionResult Index()
         {
-            return View();
+            return View(new List<GetAPIDTOs>());
         }
     }
 }
