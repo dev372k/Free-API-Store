@@ -1,6 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Store";
     ViewData["Footer-fixed"] = false;
+    var html = @"fetch('https://fakestoreapi.com/products',{
+                    method:'POST',
+                    body:JSON.stringify(
+                        {
+                            title: 'test product',
+                            price: 13.5,
+                            description: 'lorem ipsum set',
+                            image: 'https://i.pravatar.cc',
+                            category: 'electronic'
+                        }
+                    )
+                })
+                    .then(res=>res.json())
+                    .then(json=>console.log(json))";
 }
 
 
@@ -10,7 +24,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Auth</strong></li>
                 <li class="list-group-item"><span class="badge badge-success">Post</span><a href="#" class="text-black"> Login</a></li>
-                <li class="list-group-item"><span class="badge badge-success">Post</span><a href="#" class="text-black"> Login</a></li>
+                <li class="list-group-item"><span class="badge badge-success">Post</span><a href="#" class="text-black"> Register</a></li>
 
                 <li class="list-group-item"><strong>Product</strong></li>
                 <li class="list-group-item"><span class="badge badge-success">Post</span> <a href="#" class="text-black"> Create</a></li>
@@ -36,16 +50,14 @@
         </div>
     </div>
     <div class="col-md-10">
-        <div class="row my-5">
-            <div class="col-md-3">
-                <div class="api-box">
-                    <span class="badge badge-success">Post</span>
-                    <span>api/v1/product</span>
-                </div>
-            </div>
-            <div class="col-md-9 shell">
-
-            </div>
+        <div class="api-box mt-4">
+            <span class="badge badge-success">Post</span>
+            <span>api/v1/product</span>
+        </div>
+        <div>
+            <code>
+                @html
+            </code>
         </div>
     </div>
 </div>

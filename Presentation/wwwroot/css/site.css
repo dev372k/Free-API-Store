@@ -1,6 +1,7 @@
 :root {
     --black: #17202A;
     --white: #F7F9F9;
+    --main: #1F618D;
     --green: #2ECC71;
     --blue: #3498DB;
     --red: #E74C3C;
@@ -73,7 +74,7 @@ body {
 
 
 header {
-    background-color: var(--green);
+    background-color: var(--main);
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -100,14 +101,14 @@ nav {
             border-radius: 5px;
             background: var(--white);
             padding: 5px;
-            color: var(--green)
+            color: var(--main)
         }
 
         nav a.active {
             border-radius: 5px;
             background: var(--white);
             padding: 5px;
-            color: var(--green)
+            color: var(--main)
         }
 .api-card {
     background-color: #fff;
@@ -127,7 +128,7 @@ nav {
     .api-card h2 {
         font-size: 24px;
         margin-top: 0;
-        color: var(--green);
+        color: var(--main);
     }
 
     .api-card p {
@@ -136,7 +137,7 @@ nav {
     }
 
     .api-card a {
-        background-color: var(--green);
+        background-color: var(--main);
         color: var(--white) !important;
         border: none;
         padding: 10px 20px;
@@ -145,12 +146,12 @@ nav {
         transition: background-color 0.3s ease;
     }
 
-        .api-card button:hover {
-            background-color: var(--green);
-        }
+    .api-card button:hover {
+        background-color: var(--main);
+    }
 
 a {
-    color: var(--green);
+    color: var(--main);
     text-decoration: none
 }
 
@@ -159,7 +160,7 @@ a {
     padding: 5px;
     border-radius: 5px;
     color: var(--white);
-    font-size: 12px;
+    /*font-size: 12px;*/
 }
 
 .shell {
