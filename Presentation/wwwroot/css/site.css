@@ -1,46 +1,19 @@
 :root {
     --black: #17202A;
     --white: #F7F9F9;
-    --main: #1F618D;
+    --main: #4A235A;
     --green: #2ECC71;
     --blue: #3498DB;
     --red: #E74C3C;
     --yellow: #F1C40F;
     --light-grey: #D7DBDD
 }
-/*html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-  background: var(--black);
-  color: var(--white)
-}
-
-*/
-
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #EBDEF0;
     color: #333;
 }
 
@@ -54,11 +27,12 @@ body {
         width: 20rem !important;
     }
 }
-.list-group-item{
+
+.list-group-item {
     border-bottom: none !important;
 }
 
-.badge-success{
+.badge-success {
     background: var(--green)
 }
 
@@ -96,6 +70,7 @@ h1 {
     margin: 0;
     font-size: 36px;
 }
+
 nav {
     margin-top: 10px;
 }
@@ -106,13 +81,14 @@ nav {
         margin: 0 15px;
         font-size: 18px;
         transition: color 0.3s ease;
+        font-size: 14px;
     }
 
+        nav a.logo {
+            margin-right: 3%;
+        }
         nav a:hover {
-            border-radius: 5px;
-            background: var(--white);
-            padding: 5px;
-            color: var(--main)
+            color: var(--white)
         }
 
         nav a.active {
@@ -121,10 +97,11 @@ nav {
             padding: 5px;
             color: var(--main)
         }
+
 .api-card {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+    margin: 0px 20px;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -166,14 +143,14 @@ a {
     text-decoration: none
 }
 
-.api-box{
+.api-box {
     background: var(--black);
     padding: 5px;
     border-radius: 5px;
     color: var(--white);
 }
 
-.request-box{
+.request-box {
     margin: 5px 0px;
     background: var(--light-grey);
     padding: 5px;
@@ -186,11 +163,11 @@ a {
     width: 100%
 }
 
-.accordion-button:focus{
+.accordion-button:focus {
     box-shadow: none;
 }
 
-.accordion-button{
+.accordion-button {
     /* color: #0c63e4; */
     background-color: white !important;
 }
