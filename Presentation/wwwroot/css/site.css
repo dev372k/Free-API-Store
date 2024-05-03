@@ -76,7 +76,7 @@ nav {
 }
 
     nav a {
-        color: #fff;
+        color: #fff !important;
         text-decoration: none;
         margin: 0 15px;
         font-size: 18px;
@@ -95,7 +95,7 @@ nav {
             border-radius: 5px;
             background: var(--white);
             padding: 5px;
-            color: var(--main)
+            color: var(--main) !important
         }
 
 .api-card {
