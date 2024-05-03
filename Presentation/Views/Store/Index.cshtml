@@ -6,9 +6,13 @@
     ViewData["Footer-fixed"] = false;
 
 }
-
+<style>
+    .json {
+        white-space: pre-wrap;
+    }
+</style>
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
         <div class="card">
             <ul class="list-group list-group-flush">
                 @foreach (var item in Model.GetAPIs)
@@ -39,7 +43,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-9">
         <div class="api-box mt-4">
             @{
                 var badge_color = string.Empty;
@@ -64,24 +68,27 @@
             <span>@Model.API.Endpoint</span>
         </div>
         <div class="my-2">
-            <div class="accordion" id="request">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRequest" aria-expanded="true" aria-controls="collapseRequest">
-                            Request
-                        </button>
-                    </h2>
-                    <div id="collapseRequest" class="accordion-collapse collapse" data-bs-parent="#request">
-                        <div class="accordion-body">
-                            <div class="request-box">
-                                <pre>
-                                    @Model.API.Request
-            </pre>
+            @if (!string.IsNullOrEmpty(Model.API.Request))
+            {
+                <div class="accordion" id="request">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRequest" aria-expanded="true" aria-controls="collapseRequest">
+                                Request
+                            </button>
+                        </h2>
+                        <div id="collapseRequest" class="accordion-collapse collapse" data-bs-parent="#request">
+                            <div class="accordion-body">
+                                <div class="request-box">
+                                    <pre class="json">
+                                        @Html.Raw(Model.API.Request)
+                        </pre>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
         <div>
             <div class="accordion" id="response">
@@ -93,7 +100,11 @@
                     </h2>
                     <div id="collapseResponse" class="accordion-collapse collapse" data-bs-parent="#response">
                         <div class="accordion-body">
-                            @Model.API.Response
+                            <div class="request-box">
+                                <pre class="json">
+                                    @Html.Raw(Model.API.Response).ToString().Trim()
+</pre>
+                            </div>
                         </div>
                     </div>
                 </div>

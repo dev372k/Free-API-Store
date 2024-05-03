@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Application.Abstractions.Interfaces;
+using Application.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Models;
 
 namespace Presentation.Controllers.APIs;
 
@@ -7,33 +9,68 @@ namespace Presentation.Controllers.APIs;
 [ApiController]
 public class CategoryController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult Get()
+    private ICategoryRepo _categoryRepo;
+
+    public CategoryController(ICategoryRepo categoryRepo
+        )
     {
-        return Ok(new { Message = "Testing.." });
+        _categoryRepo = categoryRepo;
     }
 
-    [HttpGet("{id}")]
-    public IActionResult Get(int id)
+    [HttpGet]
+    public IActionResult Get([FromQuery] int pageNo = 1, [FromQuery] int pageSize = 10)
     {
-        return Ok(new { Message = "Testing.." });
+        try
+        {
+            var res = _categoryRepo.Get(pageNo == 0 ? 1 : pageNo, pageSize);
+            return Ok(new ResponseModel { Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { ErrorMessage =  ex.Message, ErrorDetails = ex?.InnerException?.ToString() } );
+        }
     }
 
     [HttpPost]
-    public IActionResult Post()
+    public async Task<IActionResult> Post(AddCategoryDTO req)
     {
-        return Ok(new { Message = "Testing.." });
+        try
+        {
+            var res = await _categoryRepo.Add(req);
+            return Ok(new ResponseModel { Message = "Category added successfully.", Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+        }
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put()
+    public async Task<IActionResult> Put(int id, UpdateCategoryDTO req)
     {
-        return Ok(new { Message = "Testing.." });
+        try
+        {
+            var res = await _categoryRepo.Update(id, req);
+            return Ok(new ResponseModel { Message = "Category updated successfully.", Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+        }
+
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete()
+    public async Task<IActionResult> Delete(int id)
     {
-        return Ok(new { Message = "Testing.." });
+        try
+        {
+            var res = await _categoryRepo.Delete(id);
+            return Ok(new ResponseModel { Message = "Category deleted successfully.", Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+        }
     }
 }

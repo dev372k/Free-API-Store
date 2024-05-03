@@ -1,7 +1,20 @@
+
+
+using Application.Abstractions.Implementations;
+using Application.Abstractions.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
+
 const string _policy = "CorsPolicy";
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddDbContextPool<ApplicationDBContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
+});
+builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy(name: _policy, builder =>
@@ -18,7 +31,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

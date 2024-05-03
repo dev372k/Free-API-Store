@@ -114,22 +114,34 @@ namespace Shared.Statics
                         {
                             Id = 2,
                             Name = "Get All",
-                            Endpoint = "api/category",
+                            Endpoint = "api/category?pageNo=1&pageSize=10",
                             Method = Shared.enMethodType.Get,
                             Request = @"",
-                            Response = @"",
+                            Response = @"{
+                                ""status"": true,
+                                ""message"": """",
+                                ""data"": [
+                                    {
+                                        ""id"": 1,
+                                        ""name"": ""Test"",
+                                        ""createdOn"": ""0001-01-01T00:00:00""
+                                    }
+                                ],
+                                ""errorMessage"": """",
+                                ""errorDetails"": """"
+                            }",
                             UniqueName = "category-getall",
                         },
-                        new API
-                        {
-                            Id = 3,
-                            Name = "Get By Id",
-                            Endpoint = "api/category/{id}",
-                            Method = Shared.enMethodType.Get,
-                            Request = @"",
-                            Response = @"",
-                            UniqueName = "category-getbyid",
-                        },
+                        //new API
+                        //{
+                        //    Id = 3,
+                        //    Name = "Get By Id",
+                        //    Endpoint = "api/category/{id}",
+                        //    Method = Shared.enMethodType.Get,
+                        //    Request = @"",
+                        //    Response = @"",
+                        //    UniqueName = "category-getbyid",
+                        //},
                         new API
                         {
                             Id = 4,
