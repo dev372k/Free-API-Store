@@ -15,6 +15,7 @@ builder.Services.AddDbContextPool<ApplicationDBContext>(options =>
 });
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
+builder.Services.AddScoped<IOrderRepo, OrderRepo>();
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy(name: _policy, builder =>
