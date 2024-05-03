@@ -108,13 +108,5 @@ namespace Application.Abstractions.Implementations
             }
             return 0;
         }
-
-        public void Test()
-        {
-            _context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS Orders;");
-            _context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS Products;");
-            _context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS Categories;");
-            _context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS Users;");
-        }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs
 {
+
     public class GetOrderDTO
     {
         public int Id { get; set; }
@@ -15,7 +16,7 @@ namespace Application.DTOs
 
     public class AddOrderDTO
     {
-        public int UserId { get; set; }
+        public int UserId { get; set; } 
         public int ProductId { get; set; }
     }
 

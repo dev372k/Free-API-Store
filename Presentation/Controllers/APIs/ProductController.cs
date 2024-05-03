@@ -23,13 +23,12 @@ public class ProductController : ControllerBase
     {
         try
         {
-            _productRepo.Test();
             var res = _productRepo.Get(pageNo == 0 ? 1 : pageNo, pageSize);
             return Ok(new ResponseModel { Data = res });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 
@@ -43,7 +42,7 @@ public class ProductController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
     
@@ -57,7 +56,7 @@ public class ProductController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 
@@ -67,11 +66,11 @@ public class ProductController : ControllerBase
         try
         {
             var res = await _productRepo.Add(req);
-            return Ok(new ResponseModel { Message = "Product added successfully.", Data = res });
+            return Ok(new ResponseModel { Message = "Product added successfully.", Data = new { ProductId = res } });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 
@@ -81,13 +80,12 @@ public class ProductController : ControllerBase
         try
         {
             var res = await _productRepo.Update(id, req);
-            return Ok(new ResponseModel { Message = "Product updated successfully.", Data = res });
+            return Ok(new ResponseModel { Message = "Product updated successfully.", Data = new { ProductId = res } });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
-
     }
 
     [HttpDelete("{id}")]
@@ -96,11 +94,11 @@ public class ProductController : ControllerBase
         try
         {
             var res = await _productRepo.Delete(id);
-            return Ok(new ResponseModel { Message = "Product deleted successfully.", Data = res });
+            return Ok(new ResponseModel { Message = "Product deleted successfully.", Data = new { ProductId = res } });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 }

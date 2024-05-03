@@ -28,7 +28,7 @@ public class OrderController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 
@@ -42,7 +42,7 @@ public class OrderController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 
@@ -52,11 +52,11 @@ public class OrderController : ControllerBase
         try
         {
             var res = await _orderRepo.Add(req);
-            return Ok(new ResponseModel { Message = "Order added successfully.", Data = res });
+            return Ok(new ResponseModel { Message = "Order added successfully.", Data = new { OrderId = res } });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 
@@ -66,13 +66,12 @@ public class OrderController : ControllerBase
         try
         {
             var res = await _orderRepo.Update(id, req);
-            return Ok(new ResponseModel { Message = "Order updated successfully.", Data = res });
+            return Ok(new ResponseModel { Message = "Order updated successfully.", Data = new { OrderId = res } });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
-
     }
 
     [HttpDelete("{id}")]
@@ -81,11 +80,11 @@ public class OrderController : ControllerBase
         try
         {
             var res = await _orderRepo.Delete(id);
-            return Ok(new ResponseModel { Message = "Order deleted successfully.", Data = res });
+            return Ok(new ResponseModel { Message = "Order deleted successfully.", Data = new { OrderId = res } });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 }

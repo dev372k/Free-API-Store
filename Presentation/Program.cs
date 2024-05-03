@@ -3,7 +3,10 @@
 using Application.Abstractions.Implementations;
 using Application.Abstractions.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Persistence;
+using Presentation.Models;
+using System.Text;
 
 const string _policy = "CorsPolicy";
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +19,10 @@ builder.Services.AddDbContextPool<ApplicationDBContext>(options =>
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<IOrderRepo, OrderRepo>();
+builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IStateHelper, StateHelper>();
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy(name: _policy, builder =>
@@ -25,6 +32,18 @@ builder.Services.AddCors(opt =>
             .AllowAnyMethod()
             .AllowAnyOrigin();
     });
+});
+
+builder.Services.AddAuthentication().AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateAudience = false,
+        ValidateIssuer = false,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                builder.Configuration.GetSection("SecretKeys:JWT").Value!))
+    };
 });
 var app = builder.Build();
 

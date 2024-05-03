@@ -27,7 +27,7 @@ public class CategoryController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage =  ex.Message, ErrorDetails = ex?.InnerException?.ToString() } );
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 
@@ -37,11 +37,11 @@ public class CategoryController : ControllerBase
         try
         {
             var res = await _categoryRepo.Add(req);
-            return Ok(new ResponseModel { Message = "Category added successfully.", Data = res });
+            return Ok(new ResponseModel { Message = "Category added successfully.", Data = new { CategoryId = res } });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 
@@ -51,13 +51,12 @@ public class CategoryController : ControllerBase
         try
         {
             var res = await _categoryRepo.Update(id, req);
-            return Ok(new ResponseModel { Message = "Category updated successfully.", Data = res });
+            return Ok(new ResponseModel { Message = "Category updated successfully.", Data = new { CategoryId = res } });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
-
     }
 
     [HttpDelete("{id}")]
@@ -66,11 +65,11 @@ public class CategoryController : ControllerBase
         try
         {
             var res = await _categoryRepo.Delete(id);
-            return Ok(new ResponseModel { Message = "Category deleted successfully.", Data = res });
+            return Ok(new ResponseModel { Message = "Category deleted successfully.", Data = new { CategoryId = res } });
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
 }
