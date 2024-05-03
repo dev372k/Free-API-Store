@@ -45,6 +45,20 @@ public class OrderController : ControllerBase
             return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
         }
     }
+    
+    [HttpGet("{userId}/user")]
+    public IActionResult GetbyUserId(int userId)
+    {
+        try
+        {
+            var res = _orderRepo.GetbyUserId(userId);
+            return Ok(new ResponseModel { Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
+        }
+    }
 
     [HttpPost]
     public async Task<IActionResult> Post(AddOrderDTO req)

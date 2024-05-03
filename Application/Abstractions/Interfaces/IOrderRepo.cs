@@ -11,6 +11,7 @@ namespace Application.Abstractions.Interfaces
     {
         List<GetOrderDTO> Get(int pageNo, int pageSize);
         GetOrderDTO Get(int Id);
+        List<GetOrderDTO> GetbyUserId(int userId);
         Task<int> Add(AddOrderDTO dto);
         Task<int> Update(int id, UpdateOrderDTO dto);
         Task<int> Delete(int id);

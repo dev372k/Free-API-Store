@@ -1,14 +1,8 @@
 ﻿using Application.Abstractions.Interfaces;
 using Application.DTOs;
-using Azure;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Abstractions.Implementations
 {
@@ -58,6 +52,7 @@ namespace Application.Abstractions.Implementations
                 },
                 Product = new GetProductDTO
                 {
+                    Id = _.Product.Id,
                     Name = _.Product.Name,
                     Description = _.Product.Description,
                     Price = _.Product.Price,
@@ -81,6 +76,7 @@ namespace Application.Abstractions.Implementations
                 },
                 Product = new GetProductDTO
                 {
+                    Id = _.Product.Id,
                     Name = _.Product.Name,
                     Description = _.Product.Description,
                     Price = _.Product.Price,
@@ -89,6 +85,30 @@ namespace Application.Abstractions.Implementations
                 }
             }).FirstOrDefault();
             return order;
+        }
+
+        public List<GetOrderDTO> GetbyUserId(int userId)
+        {
+            var orders = _context.Orders.Include(_ => _.Product).ThenInclude(_ => _.Category).Include(_ => _.User).Where(_ => _.UserId == userId).Select(_ => new GetOrderDTO
+            {
+                Id = _.Id,
+                User = new GetUserDTO
+                {
+                    Id = _.User.Id,
+                    Name = _.User.Name,
+                    Email = _.User.Email
+                },
+                Product = new GetProductDTO
+                {
+                    Id = _.Product.Id,
+                    Name = _.Product.Name,
+                    Description = _.Product.Description,
+                    Price = _.Product.Price,
+                    CategoryName = _.Product.Category.Name,
+                    ImageUrl = _.Product.ImageUrl
+                }
+            }).ToList();
+            return orders;
         }
 
         public async Task<int> Update(int id, UpdateOrderDTO dto)
