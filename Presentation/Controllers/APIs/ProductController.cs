@@ -23,6 +23,7 @@ public class ProductController : ControllerBase
     {
         try
         {
+            _productRepo.Test();
             var res = _productRepo.Get(pageNo == 0 ? 1 : pageNo, pageSize);
             return Ok(new ResponseModel { Data = res });
         }

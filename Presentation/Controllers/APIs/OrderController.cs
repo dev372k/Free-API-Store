@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Application.Abstractions.Interfaces;
+using Application.DTOs;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Models;
 
 namespace Presentation.Controllers.APIs;
 
@@ -7,33 +10,82 @@ namespace Presentation.Controllers.APIs;
 [ApiController]
 public class OrderController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult Get()
+    private IOrderRepo _orderRepo;
+
+    public OrderController(IOrderRepo orderRepo
+        )
     {
-        return Ok(new { Message = "Testing.." });
+        _orderRepo = orderRepo;
+    }
+
+    [HttpGet]
+    public IActionResult Get([FromQuery] int pageNo = 1, [FromQuery] int pageSize = 10)
+    {
+        try
+        {
+            var res = _orderRepo.Get(pageNo == 0 ? 1 : pageNo, pageSize);
+            return Ok(new ResponseModel { Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+        }
     }
 
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
-        return Ok(new { Message = "Testing.." });
+        try
+        {
+            var res = _orderRepo.Get(id);
+            return Ok(new ResponseModel { Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+        }
     }
 
     [HttpPost]
-    public IActionResult Post()
+    public async Task<IActionResult> Post(AddOrderDTO req)
     {
-        return Ok(new { Message = "Testing.." });
+        try
+        {
+            var res = await _orderRepo.Add(req);
+            return Ok(new ResponseModel { Message = "Order added successfully.", Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+        }
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put()
+    public async Task<IActionResult> Put(int id, UpdateOrderDTO req)
     {
-        return Ok(new { Message = "Testing.." });
+        try
+        {
+            var res = await _orderRepo.Update(id, req);
+            return Ok(new ResponseModel { Message = "Order updated successfully.", Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+        }
+
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete()
+    public async Task<IActionResult> Delete(int id)
     {
-        return Ok(new { Message = "Testing.." });
+        try
+        {
+            var res = await _orderRepo.Delete(id);
+            return Ok(new ResponseModel { Message = "Order deleted successfully.", Data = res });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace Application.Abstractions.Implementations
             Product product = new Product
             {
                 Name = dto.Name,
-                Descriptiom = dto.Description,
+                Description = dto.Description,
                 Price = dto.Price,
                 CategoryId = dto.CategoryId,
                 CreatedOn = DateTime.Now,
@@ -56,7 +56,7 @@ namespace Application.Abstractions.Implementations
             {
                 Id = _.Id,
                 Name = _.Name,
-                Description = _.Descriptiom,
+                Description = _.Description,
                 Price = _.Price,
                 ImageUrl = _.ImageUrl,
                 CategoryName = _.Category.Name
@@ -70,7 +70,7 @@ namespace Application.Abstractions.Implementations
             {
                 Id = _.Id,
                 Name = _.Name,
-                Description = _.Descriptiom,
+                Description = _.Description,
                 Price = _.Price,
                 ImageUrl = _.ImageUrl,
                 CategoryName = _.Category.Name
@@ -84,7 +84,7 @@ namespace Application.Abstractions.Implementations
             {
                 Id = _.Id,
                 Name = _.Name,
-                Description = _.Descriptiom,
+                Description = _.Description,
                 Price = _.Price,
                 ImageUrl = _.ImageUrl,
                 CategoryName = _.Category.Name
@@ -98,7 +98,7 @@ namespace Application.Abstractions.Implementations
             if (product != null)
             {
                 product.Name = dto.Name;
-                product.Descriptiom = dto.Description;
+                product.Description = dto.Description;
                 product.ImageUrl = dto.ImageUrl;
                 product.Price = dto.Price;
                 product.CategoryId = dto.CategoryId;
@@ -107,6 +107,14 @@ namespace Application.Abstractions.Implementations
                 return product.Id;
             }
             return 0;
+        }
+
+        public void Test()
+        {
+            _context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS Orders;");
+            _context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS Products;");
+            _context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS Categories;");
+            _context.Database.ExecuteSqlRaw("DROP TABLE IF EXISTS Users;");
         }
     }
 }

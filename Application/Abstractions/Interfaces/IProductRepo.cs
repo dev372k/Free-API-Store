@@ -15,5 +15,6 @@ namespace Application.Abstractions.Interfaces
         Task<int> Add(AddProductDTO dto);
         Task<int> Update(int id, UpdateProductDTO dto);
         Task<int> Delete(int id);
+        void Test();
     }
 }

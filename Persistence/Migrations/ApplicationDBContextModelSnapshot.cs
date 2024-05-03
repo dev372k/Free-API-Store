@@ -94,7 +94,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descriptiom")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -109,9 +109,8 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
@@ -159,17 +158,21 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Persistence.Entities.Order", b =>
                 {
-                    b.HasOne("Persistence.Entities.Product", null)
+                    b.HasOne("Persistence.Entities.Product", "Product")
                         .WithMany("Orders")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Persistence.Entities.User", null)
+                    b.HasOne("Persistence.Entities.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Persistence.Entities.Product", b =>
