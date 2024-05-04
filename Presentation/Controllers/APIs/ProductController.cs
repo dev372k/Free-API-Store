@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.Interfaces;
 using Application.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Persistence.Entities;
 using Presentation.Models;
@@ -8,6 +9,7 @@ namespace Presentation.Controllers.APIs;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ProductController : ControllerBase
 {
     private IProductRepo _productRepo;

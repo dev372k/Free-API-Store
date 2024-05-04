@@ -3,11 +3,6 @@ using Application.DTOs;
 using Persistence;
 using Persistence.Entities;
 using Shared.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Abstractions.Implementations
 {
@@ -34,6 +29,24 @@ namespace Application.Abstractions.Implementations
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
             return user.Id;
+        }
+
+        public GetUserDTO Get(string email, string password)
+        {
+            var user = IsExist(email);
+            if (user != null)
+            {
+                if (SecurityHelper.ValidateHash(password, user.PasswordHash))
+                    return new GetUserDTO
+                    {
+                        Id = user.Id,
+                        Name = user.Name,
+                        Email = user.Email
+                    };
+
+                throw new Exception("Invalid credentials");
+            }
+            throw new Exception("User doesn't exist");
         }
 
         private User IsExist(string email)

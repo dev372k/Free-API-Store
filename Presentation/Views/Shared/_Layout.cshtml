@@ -23,7 +23,7 @@
             </a>
             <a href="@Url.Action("Index", "Home")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">Home</a>
             <a href="@Url.Action("Index", "Store")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Store" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">Docs</a>
-            <a href="@Url.Action("Index", "Store")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Store" && ViewContext.RouteData.Values["Action"].ToString() == "" ? "active" : "")">Playground</a>
+            @* <a href="@Url.Action("Index", "Store")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Store" && ViewContext.RouteData.Values["Action"].ToString() == "" ? "active" : "")">Playground</a> *@
             <a href="https://github.com/dev372k/Free-API-Store" target="_blank">Github</a>
             <a href="#">Buy me a coffee</a>
         </nav>

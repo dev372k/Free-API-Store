@@ -29,24 +29,18 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult Login()
+    public IActionResult Login([FromBody] LoginDTO request)
     {
-        try
-        {
-            return Ok(new ResponseModel { Message = "User registered successfully." });
-        }
-        catch (Exception ex)
-        {
-            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
-        }
+        var user = _userRepo.Get(request.Email, request.Password);
+        return Ok(new ResponseModel { Data = new { User = user, Token = CreateToken(user) } });
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(AddUserDTO dto)
+    public async Task<IActionResult> Register(AddUserDTO request)
     {
         try
         {
-            var res = await _userRepo.Add(dto);
+            var res = await _userRepo.Add(request);
             return Ok(new ResponseModel { Message = "User registered successfully.", Data = new { UserId = res } });
         }
         catch (Exception ex)

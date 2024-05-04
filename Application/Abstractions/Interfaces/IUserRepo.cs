@@ -9,6 +9,7 @@ namespace Application.Abstractions.Interfaces
 {
     public interface IUserRepo
     {
-        Task<int> Add(AddUserDTO req);
+        GetUserDTO Get(string email, string password);
+        Task<int> Add(AddUserDTO dto);
     }
 }
