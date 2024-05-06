@@ -1,7 +1,8 @@
 :root {
     --black: #17202A;
     --white: #F7F9F9;
-    --main: #34495E;
+    --main: white;
+    --card-main: #17202A;
     --green: #2ECC71;
     --blue: #3498DB;
     --red: #E74C3C;
@@ -60,8 +61,9 @@ body {
 
 header {
     background-color: var(--main);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #fff;
-    padding: 5px 0;
+    padding: 10px 0;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -76,7 +78,7 @@ nav {
 }
 
     nav a {
-        color: #fff !important;
+        color: var(--black) !important;
         text-decoration: none;
         margin: 0 15px;
         font-size: 18px;
@@ -93,7 +95,7 @@ nav {
 
         nav a.active {
             border-radius: 5px;
-            background: var(--white);
+            background: var(--black);
             padding: 5px;
             color: var(--main) !important
         }
@@ -116,7 +118,7 @@ nav {
     .api-card h2 {
         font-size: 24px;
         margin-top: 0;
-        color: var(--main);
+        color: var( --card-main);
     }
 
     .api-card p {
@@ -125,7 +127,7 @@ nav {
     }
 
     .api-card a {
-        background-color: var(--main);
+        background-color: var( --card-main);
         color: var(--white) !important;
         border: none;
         padding: 10px 20px;
@@ -139,7 +141,7 @@ nav {
     }
 
 a {
-    color: var(--main);
+    color: var(--blue) !important;
     text-decoration: none
 }
 
