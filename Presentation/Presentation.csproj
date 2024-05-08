@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\release\**" />
+    <Content Remove="wwwroot\release\**" />
+    <EmbeddedResource Remove="wwwroot\release\**" />
+    <None Remove="wwwroot\release\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\favicon.png" />
   </ItemGroup>
 
@@ -30,10 +37,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\release\" />
   </ItemGroup>
 
 </Project>
