@@ -21,9 +21,9 @@
             <a href="@Url.Action("Index", "Store")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Store" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">Docs</a>
             @* <a href="@Url.Action("Index", "Store")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Store" && ViewContext.RouteData.Values["Action"].ToString() == "" ? "active" : "")">Playground</a> *@
             <a href="https://github.com/dev372k/API-Store.API" target="_blank">Github</a>
-            <a href="mailto:@Configuration.GetSection("Email").Value">
+        @*     <a href="mailto:@Configuration.GetSection("Email").Value">
                 Contact Us
-            </a>
+            </a> *@
         </nav>
     </header>
     <div class="container-fluid" style="margin-top: 5%">
