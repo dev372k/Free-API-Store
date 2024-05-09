@@ -14,7 +14,11 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 0;
     padding: 0;
-    /*background-color: #EBDEF0;*/
+    background-image: url("../background.jpg");
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    height: 100vh;
     color: #333;
 }
 
@@ -179,4 +183,11 @@ a {
 
 .btn:focus, btn:active {
     box-shadow: none !important
+}
+
+.big-card {
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    padding: 20px 30px;
+    border-radius: 5px;
 }
