@@ -12,7 +12,7 @@
         <section>
             <h4>API Documentation</h4>
             <p>For detailed information on using our APIs, including available endpoints, request parameters, and response formats, please refer to our official documentation:</p>
-            <p><strong>Documentation:</strong> <a href="https://documenter.getpostman.com/view/34343442/2sA3JFCkNm" target="_blank">https://documenter.getpostman.com/view/34343442/2sA3JFCkNm</a>    </p>
+            <p><button class="btn btn-sm btn-outline-primary" onclick="redirectPostman()" target="_blank">Documentation</button></p>
         </section>
 
         <h5 class="text-danger">Important Notice:</h5>
@@ -20,12 +20,18 @@
             <p>For your security and the protection of our data, all API endpoints require valid credentials (such tokens) to access them. Except Login and Resgisteration</p>
             <p>This ensures authorized use and prevents unauthorized access to our resources.</p>
         </section>
-        <p>If you have any questions about accessing our APIs or need help with authentication, please refer to the documentation or <a href="@Url.Action("Contact", "Home")">Contact Us</a></p>
-        <p><a href="mailto:support.freeapistore@mailinator.com"></a></p>
+        <p>If you have any questions about accessing our APIs or need help with authentication, please refer to the documentation or <a href="mailto:smowais.neduet@gmail.com">Contact Us</a></p>
     </div>
 </div>
 
 
-
+@section scripts {
+    <script>
+        const redirectPostman = () => {
+            var win = window.open("https://documenter.getpostman.com/view/34343442/2sA3JFCkNm", '_blank');
+            win.focus();
+        }
+    </script>
+}
 
 

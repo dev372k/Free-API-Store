@@ -174,3 +174,7 @@ a {
     /* color: #0c63e4; */
     background-color: white !important;
 }
+
+.btn:focus, btn:active{
+    box-shadow: none !important
+}
