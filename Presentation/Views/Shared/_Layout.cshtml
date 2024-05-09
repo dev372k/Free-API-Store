@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-@{
-
-}
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration;
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,7 +21,9 @@
             <a href="@Url.Action("Index", "Store")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Store" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">Docs</a>
             @* <a href="@Url.Action("Index", "Store")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Store" && ViewContext.RouteData.Values["Action"].ToString() == "" ? "active" : "")">Playground</a> *@
             <a href="https://github.com/dev372k/API-Store.API" target="_blank">Github</a>
-            <a href="mailto:smowais.neduet@gmail.com">Contact Us</a>
+            <a href="mailto:@Configuration.GetSection("Email").Value">
+                Contact Us
+            </a>
         </nav>
     </header>
     <div class="container-fluid" style="margin-top: 5%">
