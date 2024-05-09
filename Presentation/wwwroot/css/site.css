@@ -89,21 +89,23 @@ nav {
         nav a.logo {
             margin-right: 3%;
         }
+
         nav a:hover {
             color: var(--white)
         }
 
         nav a.active {
-            border-radius: 5px;
+            /*            border-radius: 5px;
             background: var(--black);
             padding: 5px;
-            color: var(--main) !important
+            color: var(--main) !important*/
+            font-weight: bolder
         }
 
 .api-card {
     background-color: #fff;
     /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     margin: 0px 20px;
     padding: 20px;
     border-radius: 8px;
@@ -175,6 +177,6 @@ a {
     background-color: white !important;
 }
 
-.btn:focus, btn:active{
+.btn:focus, btn:active {
     box-shadow: none !important
 }
