@@ -1,0 +1,5 @@
+text,sentiment
+"This movie was amazing!",positive
+"The service was terrible, never going back!",negative
+"The food was okay, nothing special.",neutral
+"I can't decide, it had its ups and downs.",mixed

@@ -89,15 +89,13 @@ nav {
         nav a.logo {
             margin-right: 3%;
         }
+
         nav a:hover {
             color: var(--white)
         }
 
         nav a.active {
-            border-radius: 5px;
-            background: var(--black);
-            padding: 5px;
-            color: var(--main) !important
+            font-weight: bolder;
         }
 
 .api-card {
