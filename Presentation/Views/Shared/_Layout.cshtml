@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 @{
-    bool footer_fixed = false;
-    bool.TryParse(ViewData["Footer-fixed"].ToString(), out footer_fixed);
+
 }
 <head>
     <meta charset="utf-8" />
@@ -32,11 +31,11 @@
         </main>
     </div>
 
-    @*     <footer class="border-top footer text-muted @(footer_fixed ? "fixed-bottom": "")">
-    <div class="container text-center">
-    &copy; 2024 - Free API Store
-    </div>
-    </footer> *@
+    <footer class="text-muted fixed-bottom">
+        <div class="container text-center">
+            &copy; 2024 - Free API Store
+        </div>
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
