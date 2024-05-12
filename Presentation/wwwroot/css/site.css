@@ -191,3 +191,10 @@ a {
     padding: 20px 30px;
     border-radius: 5px;
 }
+
+
+
+.footer-logo {
+    color: var(--black) !important;
+    margin: 0px 5px;
+}
