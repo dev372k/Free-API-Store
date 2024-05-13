@@ -123,8 +123,8 @@ nav {
         transform: translateY(-5px);
     }
 
-    .api-card h2 {
-        font-size: 24px;
+    .api-card h4 {
+        font-size: 20px;
         margin-top: 0;
         color: var( --card-main);
     }

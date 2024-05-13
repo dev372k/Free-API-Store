@@ -20,8 +20,9 @@ builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<IOrderRepo, OrderRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
-builder.Services.AddScoped<IStateHelper, StateHelper>();
+builder.Services.AddScoped<ITodoRepo, TodoRepo>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<IStateHelper, StateHelper>();
 
 builder.Services.AddCors(opt =>
 {

@@ -7,4 +7,8 @@
         Put,
         Delete
     }
+    public enum enPriotity
+    {
+        Low, Medium, High
+    }
 }

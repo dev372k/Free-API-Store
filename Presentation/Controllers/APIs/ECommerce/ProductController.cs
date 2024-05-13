@@ -1,23 +1,22 @@
 ﻿using Application.Abstractions.Interfaces;
 using Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
-namespace Presentation.Controllers.APIs;
+namespace Presentation.Controllers.APIs.ECommerce;
 
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class OrderController : ControllerBase
+public class ProductController : ControllerBase
 {
-    private IOrderRepo _orderRepo;
+    private IProductRepo _productRepo;
 
-    public OrderController(IOrderRepo orderRepo
+    public ProductController(IProductRepo productRepo
         )
     {
-        _orderRepo = orderRepo;
+        _productRepo = productRepo;
     }
 
     [HttpGet]
@@ -25,7 +24,7 @@ public class OrderController : ControllerBase
     {
         try
         {
-            var res = _orderRepo.Get(pageNo == 0 ? 1 : pageNo, pageSize);
+            var res = _productRepo.Get(pageNo == 0 ? 1 : pageNo, pageSize);
             return Ok(new ResponseModel { Data = res });
         }
         catch (Exception ex)
@@ -39,7 +38,7 @@ public class OrderController : ControllerBase
     {
         try
         {
-            var res = _orderRepo.Get(id);
+            var res = _productRepo.Get(id);
             return Ok(new ResponseModel { Data = res });
         }
         catch (Exception ex)
@@ -48,12 +47,12 @@ public class OrderController : ControllerBase
         }
     }
     
-    [HttpGet("{userId}/user")]
-    public IActionResult GetbyUserId(int userId)
+    [HttpGet("{categoryId}/category")]
+    public IActionResult GetbyCatogoryId(int categoryId)
     {
         try
         {
-            var res = _orderRepo.GetbyUserId(userId);
+            var res = _productRepo.GetbyCatogoryId(categoryId);
             return Ok(new ResponseModel { Data = res });
         }
         catch (Exception ex)
@@ -63,12 +62,12 @@ public class OrderController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(AddOrderDTO req)
+    public async Task<IActionResult> Post(AddProductDTO req)
     {
         try
         {
-            var res = await _orderRepo.Add(req);
-            return Ok(new ResponseModel { Message = "Order added successfully.", Data = new { OrderId = res } });
+            var res = await _productRepo.Add(req);
+            return Ok(new ResponseModel { Message = "Product added successfully.", Data = new { ProductId = res } });
         }
         catch (Exception ex)
         {
@@ -77,12 +76,12 @@ public class OrderController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, UpdateOrderDTO req)
+    public async Task<IActionResult> Put(int id, UpdateProductDTO req)
     {
         try
         {
-            var res = await _orderRepo.Update(id, req);
-            return Ok(new ResponseModel { Message = "Order updated successfully.", Data = new { OrderId = res } });
+            var res = await _productRepo.Update(id, req);
+            return Ok(new ResponseModel { Message = "Product updated successfully.", Data = new { ProductId = res } });
         }
         catch (Exception ex)
         {
@@ -95,8 +94,8 @@ public class OrderController : ControllerBase
     {
         try
         {
-            var res = await _orderRepo.Delete(id);
-            return Ok(new ResponseModel { Message = "Order deleted successfully.", Data = new { OrderId = res } });
+            var res = await _productRepo.Delete(id);
+            return Ok(new ResponseModel { Message = "Product deleted successfully.", Data = new { ProductId = res } });
         }
         catch (Exception ex)
         {

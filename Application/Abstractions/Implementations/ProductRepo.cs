@@ -47,7 +47,8 @@ namespace Application.Abstractions.Implementations
                 await _context.SaveChangesAsync();
                 return product.Id;
             }
-            return 0;
+            else
+                throw new Exception("Product does not exist.");
         }
 
         public List<GetProductDTO> Get(int pageNo, int pageSize)
@@ -106,7 +107,8 @@ namespace Application.Abstractions.Implementations
                 await _context.SaveChangesAsync();
                 return product.Id;
             }
-            return 0;
+            else
+                throw new Exception("Product does not exist.");
         }
 
         public void Test()

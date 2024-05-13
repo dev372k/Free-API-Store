@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
-namespace Presentation.Controllers.APIs;
+namespace Presentation.Controllers.APIs.ECommerce;
 
 [Route("api/[controller]")]
 [ApiController]
