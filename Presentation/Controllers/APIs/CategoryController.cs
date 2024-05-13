@@ -29,7 +29,7 @@ public class CategoryController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
         }
     }
 
@@ -43,7 +43,7 @@ public class CategoryController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
         }
     }
 
@@ -57,7 +57,7 @@ public class CategoryController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
         }
     }
 
@@ -71,7 +71,7 @@ public class CategoryController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
         }
     }
 }

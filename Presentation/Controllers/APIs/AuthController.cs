@@ -21,8 +21,7 @@ public class AuthController : ControllerBase
     private IConfiguration _config;
 
     public AuthController(IUserRepo userRepo,
-        IConfiguration config
-        )
+        IConfiguration config)
     {
         _userRepo = userRepo;
         _config = config;
@@ -31,8 +30,15 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginDTO request)
     {
-        var user = _userRepo.Get(request.Email, request.Password);
-        return Ok(new ResponseModel { Data = new { User = user, Token = CreateToken(user) } });
+        try
+        {
+            var user = _userRepo.Get(request.Email, request.Password);
+            return Ok(new ResponseModel { Data = new { User = user, Token = CreateToken(user) } });
+        }
+        catch (Exception ex)
+        {
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
+        }
     }
 
     [HttpPost("register")]
@@ -45,7 +51,7 @@ public class AuthController : ControllerBase
         }
         catch (Exception ex)
         {
-            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() }); ;
+            return Ok(new ResponseModel { Status = false, ErrorMessage = ex.Message, ErrorDetails = ex?.InnerException?.ToString() });
         }
     }
 
