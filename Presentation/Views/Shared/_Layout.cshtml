@@ -21,9 +21,9 @@
             <a href="@Url.Action("Index", "Store")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Store" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">Docs</a>
             @* <a href="@Url.Action("Index", "Store")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Store" && ViewContext.RouteData.Values["Action"].ToString() == "" ? "active" : "")">Playground</a> *@
             <a href="https://github.com/dev372k/API-Store.API" target="_blank">Github</a>
-            @*             <a href="mailto:@Configuration.GetSection("Email").Value">
-            Contact Us
-            </a> *@
+            <a href="@Url.Action("Contact", "Home")" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")">
+                Contact Us
+            </a>
         </nav>
     </header>
     <div class="container-fluid" style="margin-top: 5%">
@@ -34,7 +34,7 @@
 
     <footer class="text-muted fixed-bottom">
         <div class="container text-center">
-            &copy; 2024 - Free API Store
+            &copy; 2024 - Free API Store - <a href=" @Url.Action("Privacy", "Home")">Privacy and Policy</a>
             <div>
                 <a class="footer-logo" href="https://github.com/dev372k">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
