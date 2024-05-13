@@ -20,8 +20,9 @@ builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<IOrderRepo, OrderRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
-builder.Services.AddScoped<IStateHelper, StateHelper>();
+builder.Services.AddScoped<ITodoRepo, TodoRepo>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<IStateHelper, StateHelper>();
 
 builder.Services.AddCors(opt =>
 {
@@ -55,7 +56,15 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = ctx =>
+    {
+        const int durationInSeconds = 60 * 60 * 24 * 365; // 1 year
+        ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={durationInSeconds}");
+    }
+});
+
 app.UseCors(_policy);
 app.UseRouting();
 

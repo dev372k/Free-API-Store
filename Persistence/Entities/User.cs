@@ -12,5 +12,6 @@ namespace Persistence.Entities
         public string Email { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
         public ICollection<Order> Orders { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

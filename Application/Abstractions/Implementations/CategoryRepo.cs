@@ -35,7 +35,8 @@ namespace Application.Abstractions.Implementations
                 await _context.SaveChangesAsync();
                 return category.Id;
             }
-            return 0;
+            else
+                throw new Exception("Category does not exist.");
         }
 
         public List<GetCategoryDTO> Get(int pageNo, int pageSize)
@@ -59,7 +60,8 @@ namespace Application.Abstractions.Implementations
                 await _context.SaveChangesAsync();
                 return category.Id;
             }
-            return 0;
+            else
+                throw new Exception("Category does not exist.");
         }
     }
 }

@@ -36,7 +36,8 @@ namespace Application.Abstractions.Implementations
                 await _context.SaveChangesAsync();
                 return order.Id;
             }
-            return 0;
+            else
+                throw new Exception("Order does not exist.");
         }
 
         public List<GetOrderDTO> Get(int pageNo, int pageSize)
@@ -122,7 +123,8 @@ namespace Application.Abstractions.Implementations
                 await _context.SaveChangesAsync();
                 return order.Id;
             }
-            return 0;
+            else
+                throw new Exception("Order does not exist.");
         }
     }
 }

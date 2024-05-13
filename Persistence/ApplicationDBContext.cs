@@ -10,5 +10,6 @@ namespace Persistence
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Order> Orders => Set<Order>();
+        public DbSet<Todo> Todos => Set<Todo>();
     }
 }

@@ -4,17 +4,21 @@
     --main: white;
     --card-main: #17202A;
     --green: #2ECC71;
-    --blue: #3498DB;
+    --blue: #2980B9;
     --red: #E74C3C;
     --yellow: #F1C40F;
     --light-grey: #D7DBDD
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 0;
     padding: 0;
-    /*background-color: #EBDEF0;*/
+    background-image: url("../bg2.jpg");
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    height: 100vh;
     color: #333;
 }
 
@@ -96,11 +100,17 @@ nav {
 
         nav a.active {
             font-weight: bolder;
+            /*            border-radius: 5px;
+            background: var(--black);
+            padding: 5px;
+            color: var(--main) !important*/
+            font-weight: bolder
         }
 
 .api-card {
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     margin: 0px 20px;
     padding: 20px;
     border-radius: 8px;
@@ -113,8 +123,8 @@ nav {
         transform: translateY(-5px);
     }
 
-    .api-card h2 {
-        font-size: 24px;
+    .api-card h4 {
+        font-size: 20px;
         margin-top: 0;
         color: var( --card-main);
     }
@@ -171,7 +181,6 @@ a {
     /* color: #0c63e4; */
     background-color: white !important;
 }
-
 
 .btn:focus, btn:active {
     box-shadow: none !important

@@ -18,7 +18,14 @@ namespace Presentation.Controllers
             return View();
         }
 
+        [HttpGet("Privacy")]
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [HttpGet("Contact")]
+        public IActionResult Contact()
         {
             return View();
         }
