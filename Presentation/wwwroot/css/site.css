@@ -171,8 +171,7 @@ a {
     /* color: #0c63e4; */
     background-color: white !important;
 }
-<<<<<<< Updated upstream
-=======
+
 
 .btn:focus, btn:active {
     box-shadow: none !important
@@ -189,4 +188,4 @@ a {
     color: var(--black) !important;
     margin: 0px 5px;
 }
->>>>>>> Stashed changes
+
