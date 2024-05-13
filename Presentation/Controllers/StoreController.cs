@@ -13,10 +13,9 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("Docs")]
-        public IActionResult Index(string endpoint = "")
+        public IActionResult Index(string doctype = "")
         {
-            var list = new GetAPIDTO();
-            return View(list);
+            return View();
         }
     }
 }

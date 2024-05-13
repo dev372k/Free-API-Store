@@ -3,10 +3,11 @@
 @model GetAPIDTO
 @{
     ViewData["Title"] = "Free API Store";
+    string doctype = Context.Request.Query["doctype"];
     ViewData["Footer-fixed"] = false;
-
 }
 
+<<<<<<< Updated upstream
 <div style="width:700px; margin: 0 auto;">
     <div class="text-center">
         <section>
@@ -26,5 +27,89 @@
 
 
 
+=======
+@{
+    if (doctype == "ecommerce")
+    {
+        <div style="width:700px; margin: 0 auto;" class="big-card">
+            <div class="text-center">
+                <section>
+                    <h4>E-commerce Documentation</h4>
+                    <p>For detailed information on using our APIs, including available endpoints, request parameters, and response formats, please refer to our official documentation:</p>
+                    <p>
+                        <button class="btn btn-sm btn-outline-primary" onclick="redirectPostman()" target="_blank">
+                            Documentation
+                        </button>
+                    </p>
+                </section>
+
+            </div>
+        </div>
+    }
+    else if (doctype == "finance-tracker")
+    {
+        <div style="width:700px; margin: 0 auto;" class="big-card">
+            <div class="text-center">
+                <section>
+                    <h4>Finance Tracker Documentation</h4>
+                    <p>For detailed information on using our APIs, including available endpoints, request parameters, and response formats, please refer to our official documentation:</p>
+                    <p>
+                        <button class="btn btn-sm btn-outline-primary" onclick="redirectPostman()" target="_blank">
+                            Documentation
+                        </button>
+                    </p>
+                </section>
+
+            </div>
+        </div>
+    }
+    else if (doctype == "todo")
+    {
+        <div style="width:700px; margin: 0 auto;" class="big-card">
+            <div class="text-center">
+                <section>
+                    <h4>Todo Documentation</h4>
+                    <p>For detailed information on using our APIs, including available endpoints, request parameters, and response formats, please refer to our official documentation:</p>
+                    <p>
+                        <button class="btn btn-sm btn-outline-primary" onclick="redirectPostman()" target="_blank">
+                            Documentation
+                        </button>
+                    </p>
+                </section>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div style="width:700px; margin: 0 auto;" class="big-card">
+            <div class="text-center">
+                <section>
+                    <h4>E-commerce Documentation</h4>
+                    <p>For detailed information on using our APIs, including available endpoints, request parameters, and response formats, please refer to our official documentation:</p>
+                    <p>
+                        <button class="btn btn-sm btn-outline-primary" onclick="redirectPostman()" target="_blank">
+                            Documentation
+                        </button>
+                    </p>
+                </section>
+            </div>
+        </div>
+    }
+}
+
+
+
+
+
+
+@section scripts {
+    <script>
+        const redirectPostman = () => {
+            let win = window.open("https://documenter.getpostman.com/view/34343442/2sA3JFCkNm", '_blank');
+            win.focus();
+        }
+    </script>
+}
+>>>>>>> Stashed changes
 
 
