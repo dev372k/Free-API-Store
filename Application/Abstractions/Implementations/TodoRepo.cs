@@ -67,7 +67,7 @@ namespace Application.Abstractions.Implementations
             var query = _context.Todos.AsQueryable();
             var todos = query
                 .Where(_ => _.UserId == userId &&
-                !string.IsNullOrEmpty(search) ? _.Title.ToLower().Contains(search) : true)
+                !string.IsNullOrEmpty(search) ? _.Title.ToLower().Contains(search.ToLower()) : true)
                 .Select(_ => new GetTodoDTO
                 {
                     Id = _.Id,
