@@ -62,21 +62,24 @@ namespace Application.Abstractions.Implementations
             return todo;
         }
 
-        public GetTodoDTOs Get(int userId, int pageNo, int pageSize)
+        public GetTodoDTOs Get(int userId, int pageNo, int pageSize, string search)
         {
             var query = _context.Todos.AsQueryable();
-            var todos = query.Where(_ => _.UserId == userId).Select(_ => new GetTodoDTO
-            {
-                Id = _.Id,
-                Title = _.Title,
-                Description = _.Description,
-                CreatedOn = _.CreatedOn,
-                Expiry = _.Expiry,
-                IsExpired = _.Expiry < DateTime.Now ? true : false,
-                Priority = _.Priority.ToString(),
-                UpdatedOn = _.UpdatedOn,
-                UserId = _.UserId
-            }).Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
+            var todos = query
+                .Where(_ => _.UserId == userId &&
+                !string.IsNullOrEmpty(search) ? _.Title.ToLower().Contains(search) : true)
+                .Select(_ => new GetTodoDTO
+                {
+                    Id = _.Id,
+                    Title = _.Title,
+                    Description = _.Description,
+                    CreatedOn = _.CreatedOn,
+                    Expiry = _.Expiry,
+                    IsExpired = _.Expiry < DateTime.Now ? true : false,
+                    Priority = _.Priority.ToString(),
+                    UpdatedOn = _.UpdatedOn,
+                    UserId = _.UserId
+                }).Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
 
 
             return new GetTodoDTOs

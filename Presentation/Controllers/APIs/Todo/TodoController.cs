@@ -21,11 +21,11 @@ namespace Presentation.Controllers.APIs.Todo
         }
 
         [HttpGet, Authorize]
-        public IActionResult Get([FromQuery] int pageNo = 1, [FromQuery] int pageSize = 10)
+        public IActionResult Get([FromQuery] int pageNo = 1, [FromQuery] int pageSize = 10, [FromQuery] string search = "")
         {
             try
             {
-                var res = _todoRepo.Get(_stateHelper.User().Id, pageNo == 0 ? 1 : pageNo, pageSize);
+                var res = _todoRepo.Get(_stateHelper.User().Id, pageNo == 0 ? 1 : pageNo, pageSize, search);
                 return Ok(new ResponseModel { Data = res });
             }
             catch (Exception ex)
