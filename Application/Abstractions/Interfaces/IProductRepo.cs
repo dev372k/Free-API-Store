@@ -9,7 +9,7 @@ namespace Application.Abstractions.Interfaces
 {
     public interface IProductRepo
     {
-        List<GetProductDTO> Get(int pageNo, int pageSize);
+        GetProductDTOs Get(int pageNo, int pageSize);
         GetProductDTO Get(int Id);
         List<GetProductDTO> GetbyCatogoryId(int categoryId);
         Task<int> Add(AddProductDTO dto);

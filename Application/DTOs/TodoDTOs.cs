@@ -15,7 +15,15 @@ namespace Application.DTOs
         public int UserId { get; set; }
     }
 
-    public class UpsertTodoDTO
+    public class GetTodoDTOs
+    {
+        public List<GetTodoDTO> Todos { get; set; }
+        public int TotalCount { get; set; }
+        public int PageNo { get; set; }
+        public int PageSize { get; set; }
+    }
+
+        public class UpsertTodoDTO
     {
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;

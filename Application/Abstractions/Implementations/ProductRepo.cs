@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Application.Abstractions.Implementations
 {
@@ -51,9 +52,10 @@ namespace Application.Abstractions.Implementations
                 throw new Exception("Product does not exist.");
         }
 
-        public List<GetProductDTO> Get(int pageNo, int pageSize)
+        public GetProductDTOs Get(int pageNo, int pageSize)
         {
-            var products = _context.Products.Include(_ => _.Category).Select(_ => new GetProductDTO
+            var query = _context.Products.Include(_ => _.Category).AsQueryable();
+            var products = query.Select(_ => new GetProductDTO
             {
                 Id = _.Id,
                 Name = _.Name,
@@ -62,7 +64,14 @@ namespace Application.Abstractions.Implementations
                 ImageUrl = _.ImageUrl,
                 CategoryName = _.Category.Name
             }).Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
-            return products;
+
+            return new GetProductDTOs
+            {
+                Products = products,
+                PageNo = pageNo,
+                PageSize = pageSize,
+                TotalCount = query.Count()
+            };
         }
 
         public GetProductDTO Get(int Id)

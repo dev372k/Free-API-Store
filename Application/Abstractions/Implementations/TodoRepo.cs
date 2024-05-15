@@ -62,9 +62,10 @@ namespace Application.Abstractions.Implementations
             return todo;
         }
 
-        public List<GetTodoDTO> Get(int userId, int pageNo, int pageSize)
+        public GetTodoDTOs Get(int userId, int pageNo, int pageSize)
         {
-            var todos = _context.Todos.Where(_ => _.UserId == userId).Select(_ => new GetTodoDTO
+            var query = _context.Todos.AsQueryable();
+            var todos = query.Where(_ => _.UserId == userId).Select(_ => new GetTodoDTO
             {
                 Id = _.Id,
                 Title = _.Title,
@@ -72,11 +73,19 @@ namespace Application.Abstractions.Implementations
                 CreatedOn = _.CreatedOn,
                 Expiry = _.Expiry,
                 IsExpired = _.Expiry < DateTime.Now ? true : false,
-                Priority = _.Priority.ToString(), 
+                Priority = _.Priority.ToString(),
                 UpdatedOn = _.UpdatedOn,
                 UserId = _.UserId
             }).Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
-            return todos;
+
+
+            return new GetTodoDTOs
+            {
+                Todos = todos,
+                PageNo = pageNo,
+                PageSize = pageSize,
+                TotalCount = query.Count()
+            };
         }
 
         public async Task<int> Update(int id, UpsertTodoDTO dto)

@@ -16,7 +16,15 @@ namespace Application.DTOs
         public string ImageUrl { get; set; } = string.Empty;
         public string CategoryName { get; set; } = string.Empty;
     }
-    public class AddProductDTO
+
+    public class GetProductDTOs
+    {
+        public List<GetProductDTO> Products { get; set; }
+        public int TotalCount { get; set; }
+        public int PageNo { get; set; }
+        public int PageSize { get; set; }
+    }
+        public class AddProductDTO
     {
         public string Name { get; set; } = string.Empty;
         public decimal Price { get; set; } 

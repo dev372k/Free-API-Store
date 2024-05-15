@@ -39,15 +39,23 @@ namespace Application.Abstractions.Implementations
                 throw new Exception("Category does not exist.");
         }
 
-        public List<GetCategoryDTO> Get(int pageNo, int pageSize)
+        public GetCategoryDTOs Get(int pageNo, int pageSize)
         {
-            var categories = _context.Categories.Select(_ => new GetCategoryDTO
+            var query = _context.Categories.AsQueryable();
+            var categories = query.Select(_ => new GetCategoryDTO
             {
                 Id = _.Id,
                 Name = _.Name,
                 CreatedOn = _.CreatedOn
             }).Skip(pageSize * (pageNo - 1)).Take(pageSize).ToList();
-            return categories;
+
+            return new GetCategoryDTOs
+            {
+                Categories = categories,
+                PageNo = pageNo,
+                PageSize = pageSize,
+                TotalCount = query.Count()
+            };
         }
 
         public async Task<int> Update(int id, UpdateCategoryDTO dto)
